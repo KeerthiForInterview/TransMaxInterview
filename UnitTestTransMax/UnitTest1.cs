@@ -15,6 +15,10 @@ namespace TransMaxUnitTests
     [TestClass]
     public class StudentTests
     {
+        const string INPUT_FILE_PATH = @"..\..\InputFiles\";
+        const string EXPECTED_RESULTS_FILE_PATH = @"..\..\ExpectedResult\";
+        const string ACTUAL_RESULTS_FILE_PATH = @"..\..\ActualResult\";
+
         private int StartConsoleApplication(string arguments)
         {
             // Initialize process here
@@ -74,7 +78,7 @@ namespace TransMaxUnitTests
             {
                 Console.SetOut(sw);
 
-                string inputFileName = @"InputFiles\InputFileEmpty.txt";
+                string inputFileName = INPUT_FILE_PATH + "InputFileEmpty.txt";
                 StartConsoleApplication(inputFileName);
 
                 Assert.IsTrue(sw.ToString().Contains("The file is empty"));
@@ -85,15 +89,15 @@ namespace TransMaxUnitTests
         public void ValidateStudentCollectionIfMarkAbsent()
         {
             var testStudent = new Student();
-            string inputFileName = @"InputFiles\MarksMissingInput.txt";
+            string inputFileName = INPUT_FILE_PATH + "MarksMissingInput.txt";
             var studentsList = testStudent.ReadFile(inputFileName);
 
             IEnumerable<Student> sortedStudentsList = testStudent.SortByMarksAndLastName(studentsList);
 
-            string outputFileName = @"ActualResult\" + testStudent.GetOuputFileName(inputFileName);
+            string outputFileName = ACTUAL_RESULTS_FILE_PATH + testStudent.GetOuputFileName(inputFileName);
             testStudent.WriteFile(outputFileName, sortedStudentsList);
 
-            string expectedResultFileName = @"ExpectedResult\MarksMissingExpected.txt";
+            string expectedResultFileName = EXPECTED_RESULTS_FILE_PATH + "MarksMissingExpected.txt";
             IEnumerable<Student> expectedSortedStudentsList = testStudent.ReadFile(expectedResultFileName);
 
             AssertCollectionsAreEqual(expectedSortedStudentsList, sortedStudentsList);
@@ -104,17 +108,17 @@ namespace TransMaxUnitTests
         public void ValidateStudentCollectionIfLastNamekAbsent()
         {
             var testStudent = new Student();
-            string inputFileName = @"InputFiles\LastNameMissingInput.txt";
+            string inputFileName = INPUT_FILE_PATH + "LastNameMissingInput.txt";
 
             var studentsList = testStudent.ReadFile(inputFileName);
 
             IEnumerable<Student> sortedStudentsList = testStudent.SortByMarksAndLastName(studentsList);
 
-            string outputFileName = @"ActualResult\" + testStudent.GetOuputFileName(inputFileName);
+            string outputFileName = ACTUAL_RESULTS_FILE_PATH + testStudent.GetOuputFileName(inputFileName);
 
             testStudent.WriteFile(outputFileName, sortedStudentsList);
 
-            string expectedResultFileName = @"ExpectedResult\LastNameMissingExpected.txt";
+            string expectedResultFileName = EXPECTED_RESULTS_FILE_PATH + "LastNameMissingExpected.txt";
             IEnumerable<Student> expectedSortedStudentsList = testStudent.ReadFile(expectedResultFileName);
 
             AssertCollectionsAreEqual(expectedSortedStudentsList, sortedStudentsList);
@@ -124,17 +128,17 @@ namespace TransMaxUnitTests
         public void ValidateStudentCollectionIfFirstNamekAbsent()
         {
             var testStudent = new Student();
-            string inputFileName = @"InputFiles\FirstNameMissingInput.txt";
+            string inputFileName = INPUT_FILE_PATH + "FirstNameMissingInput.txt";
 
             var studentsList = testStudent.ReadFile(inputFileName);
 
             IEnumerable<Student> sortedStudentsList = testStudent.SortByMarksAndLastName(studentsList);
 
-            string outputFileName = @"ActualResult\" + testStudent.GetOuputFileName(inputFileName);
+            string outputFileName = ACTUAL_RESULTS_FILE_PATH + testStudent.GetOuputFileName(inputFileName);
 
             testStudent.WriteFile(outputFileName, sortedStudentsList);
 
-            string expectedResultFileName = @"ExpectedResult\FirstNameMissingExpected.txt";
+            string expectedResultFileName = EXPECTED_RESULTS_FILE_PATH + "FirstNameMissingExpected.txt";
             IEnumerable<Student> expectedSortedStudentsList = testStudent.ReadFile(expectedResultFileName);
 
             AssertCollectionsAreEqual(expectedSortedStudentsList, sortedStudentsList);
@@ -144,17 +148,17 @@ namespace TransMaxUnitTests
         public void TestForGoodData()
         {
             var testStudent = new Student();
-            string inputFileName = @"InputFiles\GoodDataInput.txt";
+            string inputFileName = INPUT_FILE_PATH + "GoodDataInput.txt";
 
             var studentsList = testStudent.ReadFile(inputFileName);
 
             IEnumerable<Student> sortedStudentsList = testStudent.SortByMarksAndLastName(studentsList);
 
-            string outputFileName = @"ActualResult\" + testStudent.GetOuputFileName(inputFileName);
+            string outputFileName = ACTUAL_RESULTS_FILE_PATH + testStudent.GetOuputFileName(inputFileName);
 
             testStudent.WriteFile(outputFileName, sortedStudentsList);
 
-            string expectedResultFileName = @"ExpectedResult\GoodDataExpected.txt";
+            string expectedResultFileName = EXPECTED_RESULTS_FILE_PATH + "GoodDataExpected.txt";
             IEnumerable<Student> expectedSortedStudentsList = testStudent.ReadFile(expectedResultFileName);
 
             AssertCollectionsAreEqual(expectedSortedStudentsList, sortedStudentsList);
