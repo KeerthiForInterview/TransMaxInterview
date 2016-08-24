@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Transmax;
+using TransMax;
 
 namespace TransMaxUnitTests
 {
+
+    /*
+     * The following class has unit tests to test the functionality of the TransMax.Student class 
+     */
     [TestClass]
     public class StudentTests
     {

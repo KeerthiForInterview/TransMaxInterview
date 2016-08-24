@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TransmaxTest\Transmax.csproj">
+    <ProjectReference Include="..\TransmaxTest\TransMax.csproj">
       <Project>{4ad99676-dbef-41b2-8b1f-0a686584a8a8}</Project>
-      <Name>Transmax</Name>
+      <Name>TransMax</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transmax", "TransmaxTest\Transmax.csproj", "{4AD99676-DBEF-41B2-8B1F-0A686584A8A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransMax", "TransmaxTest\TransMax.csproj", "{4AD99676-DBEF-41B2-8B1F-0A686584A8A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransMaxUnitTests", "UnitTestTransMax\TransMaxUnitTests.csproj", "{8B83AB97-762A-4DAD-8069-C9D0E2207322}"
 EndProject
