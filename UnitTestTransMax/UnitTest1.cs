@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using TransMax;
@@ -19,43 +18,14 @@ namespace TransMaxUnitTests
         const string EXPECTED_RESULTS_FILE_PATH = @"..\..\ExpectedResult\";
         const string ACTUAL_RESULTS_FILE_PATH = @"..\..\ActualResult\";
 
-        private int StartConsoleApplication(string arguments)
-        {
-            // Initialize process here
-            Process proc = new Process();
-            proc.StartInfo.FileName = @"..\..\..\TransmaxTest\bin\Release\TransmaxTest.exe";
-            // add arguments as whole string
-            proc.StartInfo.Arguments = arguments;
-
-            // use it to start from testing environment
-            proc.StartInfo.UseShellExecute = false;
-
-            // redirect outputs to have it in testing console
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.RedirectStandardError = true;
-
-            // set working directory
-            proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-
-            // start and wait for exit
-            proc.Start();
-            proc.WaitForExit();
-
-            // get output to testing console.
-            Console.WriteLine(proc.StandardOutput.ReadToEnd());
-            Console.Write(proc.StandardError.ReadToEnd());
-
-            // return exit code
-            return proc.ExitCode;
-        }
-
         [TestMethod]
         public void ValidateUsage()
         {
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                StartConsoleApplication(null);
+                string[] args = new string[0];
+                Program.Main(args);
                 Assert.IsTrue(sw.ToString().Contains("Incorrect usage"));
             }
         }
@@ -66,7 +36,8 @@ namespace TransMaxUnitTests
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                StartConsoleApplication("ThisFileDoesNotExist.txt");
+                string[] args = new string[] { "ThisFileDoesNotExist.txt" };
+                Program.Main(args);
                 Assert.IsTrue(sw.ToString().Contains("Could not find file"));
             }
         }
@@ -79,7 +50,8 @@ namespace TransMaxUnitTests
                 Console.SetOut(sw);
 
                 string inputFileName = INPUT_FILE_PATH + "InputFileEmpty.txt";
-                StartConsoleApplication(inputFileName);
+                string[] args = new string[1] { inputFileName };
+                Program.Main(args);
 
                 Assert.IsTrue(sw.ToString().Contains("The file is empty"));
             }
